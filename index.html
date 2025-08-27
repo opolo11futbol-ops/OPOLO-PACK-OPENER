@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIFA Packs - Mini Juego</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">FIFA Packs</div>
+    <div class="status">
+      <div class="user" id="currentUser">Invitado</div>
+      <div class="coins" id="coins">🪙 0</div>
+      <button id="couponBtn" class="btn btn-outline">Cupón</button>
+      <button id="resetBtn" class="btn btn-outline">Reiniciar</button>
+      <button id="logoutBtn" class="btn btn-outline">Salir</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="packs">
+      <h2>Elige un sobre</h2>
+      <div class="pack-grid">
+        <button class="pack" data-pack="bronze">
+          <div class="pack-title bronze">Bronce</div>
+          <div class="pack-info">
+            <div>Precio: 500</div>
+            <div>Rates: 70% Oro · 20% Héroe · 7% Icono · 3% Flashback</div>
+            <div>5 cartas</div>
+          </div>
+        </button>
+        <button class="pack" data-pack="silver">
+          <div class="pack-title silver">Plata</div>
+          <div class="pack-info">
+            <div>Precio: 2500</div>
+            <div>Rates: 45% Oro · 30% Héroe · 15% Icono · 10% Flashback</div>
+            <div>5 cartas</div>
+          </div>
+        </button>
+        <button class="pack" data-pack="gold">
+          <div class="pack-title gold">Oro</div>
+          <div class="pack-info">
+            <div>Precio: 7500</div>
+            <div>Rates: 25% Oro · 40% Héroe · 20% Icono · 15% Flashback</div>
+            <div>5 cartas</div>
+          </div>
+        </button>
+        <button class="pack" data-pack="promo">
+          <div class="pack-title promo">Promo</div>
+          <div class="pack-info">
+            <div>Precio: 15000</div>
+            <div>Rates: 10% Oro · 30% Héroe · 35% Icono · 25% Flashback</div>
+            <div>5 cartas</div>
+          </div>
+        </button>
+        <button class="pack" data-pack="flash_duo">
+          <div class="pack-title elite">Flashback x2</div>
+          <div class="pack-info">
+            <div>Precio: 30000</div>
+            <div>Garantiza: 2 Flashback</div>
+            <div>Rates: 10% Oro · 25% Héroe · 20% Icono · 45% Flashback</div>
+            <div>5 cartas</div>
+          </div>
+        </button>
+        <button class="pack" data-pack="icon_duo">
+          <div class="pack-title icon">Icono x2</div>
+          <div class="pack-info">
+            <div>Precio: 32000</div>
+            <div>Garantiza: 2 Icono</div>
+            <div>Rates: 15% Oro · 30% Héroe · 35% Icono · 20% Flashback</div>
+            <div>5 cartas</div>
+          </div>
+        </button>
+      </div>
+    </section>
+
+  <!-- DCP (Desafíos de Creación de Plantillas) -->
+  <section class="dcp-overlay" id="dcp" style="display:none">
+    <div class="dcp-card">
+      <div class="dcp-header">
+        <h2 id="dcpTitle">DCP · Cristiano Ronaldo 97</h2>
+        <button id="closeDcpBtn" class="btn small btn-outline">Cerrar</button>
+      </div>
+      <div class="dcp-tabs" style="display:flex; gap:8px; padding:0 16px 8px 16px">
+        <button id="dcpTabCR" class="btn small">CR97</button>
+        <button id="dcpTabMessi" class="btn small btn-outline">Messi97</button>
+        <button id="dcpTabDiaz" class="btn small btn-outline">Díaz98</button>
+        <button id="dcpTabRaphinha" class="btn small btn-outline">Raphinha98</button>
+        <button id="dcpTabMbappe" class="btn small btn-outline">Mbappé96</button>
+      </div>
+      <p id="dcpReqText" class="muted" style="padding:0 16px">Requisito: 11 jugadores con media mínima 89 OVR. Al enviar la plantilla, recibirás a <strong>Cristiano Ronaldo 97</strong> y las cartas enviadas se perderán.</p>
+      <div class="dcp-body">
+        <div class="dcp-list">
+          <div class="list-header">
+            <strong>Selecciona 11 cartas</strong>
+            <div class="actions-mini">
+              <button id="dcpClearBtn" class="btn small btn-outline">Limpiar</button>
+              <button id="dcpDupBtn" class="btn small btn-outline">Duplicados</button>
+              <button id="dcpFilterDupBtn" class="btn small btn-outline" title="Mostrar solo cartas que tengan duplicados">Solo duplicados</button>
+            </div>
+          </div>
+          <div id="dcpList" class="list"></div>
+        </div>
+      </div>
+      <div class="dcp-footer">
+        <div id="dcpStatus" class="muted">0 / 11 seleccionados · Media: 0</div>
+        <button id="dcpSubmitBtn" class="btn" disabled>Enviar plantilla</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exchange Overlay: Venta rápida -->
+  <section class="exchange-overlay" id="exchange" style="display:none">
+    <div class="exchange-card">
+      <div class="exchange-header">
+        <h2>Venta rápida</h2>
+        <button id="closeExchangeBtn" class="btn small btn-outline">Cerrar</button>
+      </div>
+      <p class="muted">Elige una carta para venderla por monedas según su rareza.</p>
+      <div class="exchange-body">
+        <div class="exchange-list" id="exchangeList"></div>
+        <div class="exchange-controls">
+          <div id="exchangeValue" class="muted">Selecciona una carta</div>
+          <button id="doExchangeBtn" class="btn" disabled>Vender</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="actions">
+      <button id="openPackBtn" class="btn" disabled>Abrir Sobre</button>
+      <button id="viewClubBtn" class="btn btn-outline">Ver Club</button>
+      <button id="duplicatesBtn" class="btn btn-outline">Duplicados</button>
+      <button id="tournamentBtn" class="btn btn-outline">Torneo</button>
+      <button id="exchangeBtn" class="btn btn-outline">Intercambio</button>
+      <button id="dcpBtn" class="btn btn-outline">DCP</button>
+    </section>
+
+    <section class="reveal" id="reveal">
+      <div class="reveal-header">
+        <h2>Cartas del sobre</h2>
+        <div style="display:flex; align-items:center; gap:8px">
+          <span id="revealInfo" class="muted" style="font-size:.9rem"></span>
+          <button id="keepAllBtn" class="btn small">Guardar todo</button>
+          <button id="closeRevealBtn" class="btn small btn-outline">Cerrar</button>
+        </div>
+      </div>
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <section class="club" id="club">
+      <div class="club-header">
+        <h2>Mi Club</h2>
+        <div class="club-actions">
+          <input id="search" type="text" placeholder="Buscar jugador..." />
+          <select id="filter">
+            <option value="all">Todos</option>
+            <option value="common">Oro</option>
+            <option value="rare">Héroe</option>
+            <option value="icon">Icono</option>
+            <option value="elite">Flashback</option>
+          </select>
+          <button id="closeClubBtn" class="btn small">Cerrar</button>
+        </div>
+      </div>
+      <div class="club-grid" id="clubGrid"></div>
+    </section>
+
+    <!-- Duplicados -->
+    <section class="club" id="duplicates">
+      <div class="club-header">
+        <h2>Duplicados</h2>
+        <div class="club-actions">
+          <button id="closeDuplicatesBtn" class="btn small">Cerrar</button>
+        </div>
+      </div>
+      <div class="club-grid" id="duplicatesGrid"></div>
+    </section>
+  </main>
+
+  <template id="cardTemplate">
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-face card-front">
+          <div class="art"><img alt="" /></div>
+          <div class="shimmer"></div>
+          <div class="rating"></div>
+          <div class="name"></div>
+          <div class="nation"></div>
+          <div class="position"></div>
+        </div>
+        <div class="card-face card-back">?</div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Torneo -->
+  <section class="tournament" id="tournament">
+    <div class="tour-header">
+      <h2>Torneo</h2>
+      <div class="tour-actions">
+        <button id="startTournamentBtn" class="btn small">Iniciar</button>
+        <button id="closeTournamentBtn" class="btn small btn-outline">Cerrar</button>
+      </div>
+    </div>
+    <div class="tour-body">
+      <div class="tour-status">
+        <div id="tourRound">Ronda: -</div>
+        <div id="tourScore">Marcador: 0 - 0</div>
+        <div id="tourTurn">Turno: -</div>
+      </div>
+      <div class="tour-field">
+        <div id="tourLastResult" class="tour-result">—</div>
+        <div id="tourMessage" class="tour-message">Pulsa Iniciar para comenzar</div>
+        <div class="choices" id="choices">
+          <button class="choice" data-side="L">Izquierda</button>
+          <button class="choice" data-side="C">Centro</button>
+          <button class="choice" data-side="R">Derecha</button>
+        </div>
+        <!-- Penales: grid 3x5 -->
+        <div id="penGrid" class="pen-grid" style="display:none"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alineación (debe completarse antes de iniciar torneo) -->
+  <section class="lineup-overlay" id="lineup">
+    <div class="lineup-card">
+      <div class="lineup-header">
+        <h2>Alineación requerida</h2>
+        <button id="closeLineupBtn" class="btn small btn-outline">Cerrar</button>
+      </div>
+      <p class="muted">Completa 11 posiciones para entrar al torneo.</p>
+      <div class="lineup-body">
+        <div class="lineup-field">
+          <div class="slot" data-index="0" data-role="Keeper">Keeper</div>
+          <div class="row">
+            <div class="slot" data-index="1" data-role="Fullback">Fullback</div>
+            <div class="slot" data-index="2" data-role="Fullback">Fullback</div>
+            <div class="slot" data-index="3" data-role="Fullback">Fullback</div>
+          </div>
+          <div class="row">
+            <div class="slot" data-index="4" data-role="Halfback">Halfback</div>
+            <div class="slot" data-index="5" data-role="Halfback">Halfback</div>
+          </div>
+          <div class="row">
+            <div class="slot" data-index="6" data-role="Inside Forward">Inside Fwd</div>
+            <div class="slot" data-index="7" data-role="Inside Forward">Inside Fwd</div>
+          </div>
+          <div class="row">
+            <div class="slot" data-index="8" data-role="Left Winger">Left Winger</div>
+            <div class="slot" data-index="9" data-role="Centre Forward">Centre Fwd</div>
+            <div class="slot" data-index="10" data-role="Right Winger">Right Winger</div>
+          </div>
+        </div>
+        <div class="lineup-list">
+          <div class="list-header">
+            <strong>Mi Club</strong>
+            <div class="actions-mini">
+              <button id="autoFillBtn" class="btn small">Autorellenar</button>
+              <button id="clearLineupBtn" class="btn small btn-outline">Limpiar</button>
+            </div>
+          </div>
+          <div id="lineupClubList" class="list"></div>
+        </div>
+      </div>
+      <div class="lineup-footer">
+        <div id="lineupStatus" class="muted">0 / 11 seleccionados</div>
+        <button id="confirmLineupBtn" class="btn" disabled>Confirmar e iniciar</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    Hecho por ti · Sin APIs · Solo HTML/CSS/JS
+  </footer>
+
+  <!-- Auth Overlay -->
+  <section class="auth-overlay" id="auth">
+    <div class="auth-card">
+      <h2>Inicia sesión</h2>
+      <p class="muted">Crea o entra a una cuenta local (solo en este navegador)</p>
+      <form id="authForm">
+        <input id="username" name="username" type="text" placeholder="Nombre de usuario" autocomplete="username" required />
+        <div class="auth-actions">
+          <button type="submit" class="btn">Entrar</button>
+        </div>
+      </form>
+      <p class="small muted">Cada cuenta inicia con 20,000 monedas</p>
+    </div>
+  </section>
+
+  <!-- Cache-bust to forzar que cargue la última versión del JS -->
+  <script src="script.js?v=9"></script>
+</body>
+</html>
