@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <!-- Fondo transparente; el contenedor tendrá su propio fondo -->
+  <!-- Poste de la portería -->
+  <rect x="200" y="180" width="1200" height="540" rx="14" ry="14" fill="#f7f9ff" stroke="#d9e2f1" stroke-width="10"/>
+  <!-- Área interior con ligera sombra para dar profundidad -->
+  <rect x="220" y="200" width="1160" height="500" fill="#ffffff" stroke="#e6ecf7" stroke-width="6"/>
+  <!-- Red: patrón de líneas -->
+  <g stroke="#dbe4f6" stroke-width="2">
+    <!-- Verticales -->
+    <g>
+      <path d="M260 200 V700"/>
+      <path d="M320 200 V700"/>
+      <path d="M380 200 V700"/>
+      <path d="M440 200 V700"/>
+      <path d="M500 200 V700"/>
+      <path d="M560 200 V700"/>
+      <path d="M620 200 V700"/>
+      <path d="M680 200 V700"/>
+      <path d="M740 200 V700"/>
+      <path d="M800 200 V700"/>
+      <path d="M860 200 V700"/>
+      <path d="M920 200 V700"/>
+      <path d="M980 200 V700"/>
+      <path d="M1040 200 V700"/>
+      <path d="M1100 200 V700"/>
+      <path d="M1160 200 V700"/>
+      <path d="M1220 200 V700"/>
+      <path d="M1280 200 V700"/>
+      <path d="M1340 200 V700"/>
+    </g>
+    <!-- Horizontales -->
+    <g>
+      <path d="M220 230 H1380"/>
+      <path d="M220 270 H1380"/>
+      <path d="M220 310 H1380"/>
+      <path d="M220 350 H1380"/>
+      <path d="M220 390 H1380"/>
+      <path d="M220 430 H1380"/>
+      <path d="M220 470 H1380"/>
+      <path d="M220 510 H1380"/>
+      <path d="M220 550 H1380"/>
+      <path d="M220 590 H1380"/>
+      <path d="M220 630 H1380"/>
+      <path d="M220 670 H1380"/>
+    </g>
+  </g>
+  <!-- Sombra suave del marco -->
+  <rect x="200" y="180" width="1200" height="540" rx="14" ry="14" fill="none" stroke="#cfd8ec" stroke-width="8" opacity="0.6"/>
+</svg>
