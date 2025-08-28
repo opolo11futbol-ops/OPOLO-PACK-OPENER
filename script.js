@@ -80,35 +80,35 @@ const DCP_CONFIG = {
     title: 'DCP · Cristiano Ronaldo 97',
     count: 11,
     minAvg: 89,
-    reward: { name: 'Cristiano Ronaldo', rating: 97, rarity: 'dcp', position: 'Centre Forward', image: 'tarjetas fifa/Cristiano Ronaldo dcp.png' },
+    reward: { name: 'Cristiano Ronaldo', rating: 97, rarity: 'dcp', position: 'Centre Forward', image: 'Cristiano Ronaldo dcp.png' },
     reqText: 'Requisito: 11 jugadores con media mínima 89 OVR. Al enviar la plantilla, recibirás a <strong>Cristiano Ronaldo 97</strong> y las cartas enviadas se perderán.'
   },
   MESSI: {
     title: 'DCP · Lionel Messi 97',
     count: 6,
     minAvg: 92,
-    reward: { name: 'Lionel Messi', rating: 97, rarity: 'dcp', position: 'Right Winger', image: 'tarjetas fifa/messi dcp.png' },
+    reward: { name: 'Lionel Messi', rating: 97, rarity: 'dcp', position: 'Right Winger', image: 'messi dcp.png' },
     reqText: 'Requisito: 6 jugadores con media mínima 92 OVR. Al enviar la plantilla, recibirás a <strong>Lionel Messi 97</strong> y las cartas enviadas se perderán.'
   },
   DIAZ: {
     title: 'DCP · Díaz 98',
     count: 9,
     minAvg: 91,
-    reward: { name: 'Díaz', rating: 98, rarity: 'dcp', position: 'Left Winger', image: 'tarjetas fifa/diaz dcp 98 lw.PNG' },
+    reward: { name: 'Díaz', rating: 98, rarity: 'dcp', position: 'Left Winger', image: 'diaz dcp 98 lw.PNG' },
     reqText: 'Requisito: 9 jugadores con media mínima 91 OVR. Al enviar la plantilla, recibirás a <strong>Díaz 98</strong> y las cartas enviadas se perderán.'
   },
   RAPHINHA: {
     title: 'DCP · Raphinha 98',
     count: 6,
     minAvg: 93,
-    reward: { name: 'Raphinha', rating: 98, rarity: 'dcp', position: 'Right Winger', image: 'tarjetas fifa/raphiña dcp 98 lw.png' },
+    reward: { name: 'Raphinha', rating: 98, rarity: 'dcp', position: 'Right Winger', image: 'raphiña dcp 98 lw.png' },
     reqText: 'Requisito: 6 jugadores con media mínima 93 OVR. Al enviar la plantilla, recibirás a <strong>Raphinha 98</strong> y las cartas enviadas se perderán.'
   },
   MBAPPE: {
     title: 'DCP · Mbappé 96',
     count: 11,
     minAvg: 88,
-    reward: { name: 'Mbappé', rating: 96, rarity: 'dcp', position: 'Striker', image: 'tarjetas fifa/mbappe dcp 96 st.png' },
+    reward: { name: 'Mbappé', rating: 96, rarity: 'dcp', position: 'Striker', image: 'mbappe dcp 96 st.png' },
     reqText: 'Requisito: 11 jugadores con media mínima 88 OVR. Al enviar la plantilla, recibirás a <strong>Mbappé 96</strong> y las cartas enviadas se perderán.'
   }
 };
