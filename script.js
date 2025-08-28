@@ -12,6 +12,15 @@ const STORAGE_KEYS = {
   userDataPrefix: "fifa_user_", // key: fifa_user_<username>
 };
 
+// Hash helper (SHA-256 -> hex) for optional passwords
+async function hashPassword(pwd) {
+  const enc = new TextEncoder();
+  const data = enc.encode(String(pwd));
+  const digest = await crypto.subtle.digest('SHA-256', data);
+  const bytes = new Uint8Array(digest);
+  return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
 let state = {
   coins: 0,
   selectedPack: null,
@@ -114,20 +123,21 @@ const STAGE_REWARDS = {
 
 // Packs
 const PACKS = {
-  bronze: { name: "Bronce", price: 500, odds: { common: 0.70, rare: 0.20, icon: 0.07, elite: 0.03 }, size: 5 },
-  silver: { name: "Plata", price: 2500, odds: { common: 0.45, rare: 0.30, icon: 0.15, elite: 0.10 }, size: 5 },
-  gold:   { name: "Oro", price: 7500, odds: { common: 0.25, rare: 0.40, icon: 0.20, elite: 0.15 }, size: 5 },
-  promo:  { name: "Promo", price: 15000, odds: { common: 0.10, rare: 0.30, icon: 0.35, elite: 0.25 }, size: 5 },
-  flash_duo: { name: "Flashback x2", price: 30000, odds: { common: 0.10, rare: 0.25, icon: 0.20, elite: 0.45 }, size: 5, guarantees: { elite: 2 } },
-  icon_duo:  { name: "Icono x2",     price: 32000, odds: { common: 0.15, rare: 0.30, icon: 0.35, elite: 0.20 }, size: 5, guarantees: { icon: 2 } },
+  bronze: { name: "Bronce", price: 500, odds: { common: 0.70, rare: 0.18, icon: 0.07, elite: 0.03, totw: 0.02 }, size: 5 },
+  silver: { name: "Plata", price: 2500, odds: { common: 0.43, rare: 0.30, icon: 0.15, elite: 0.10, totw: 0.02 }, size: 5 },
+  gold:   { name: "Oro", price: 7500, odds: { common: 0.35, rare: 0.33, icon: 0.16, elite: 0.12, totw: 0.04 }, size: 5 },
+  promo:  { name: "Promo", price: 15000, odds: { common: 0.08, rare: 0.28, icon: 0.35, elite: 0.25, totw: 0.04 }, size: 5 },
+  flash_duo: { name: "Flashback x2", price: 30000, odds: { common: 0.08, rare: 0.25, icon: 0.20, elite: 0.45, totw: 0.02 }, size: 5, guarantees: { elite: 2 } },
+  icon_duo:  { name: "Icono x2",     price: 32000, odds: { common: 0.13, rare: 0.30, icon: 0.35, elite: 0.20, totw: 0.02 }, size: 5, guarantees: { icon: 2 } },
+  totw_duo:  { name: "TOTW x2",      price: 31000, odds: { common: 0.12, rare: 0.26, icon: 0.25, elite: 0.02, totw: 0.35 }, size: 5, guarantees: { totw: 2 } },
 };
 
 // Recompensa por descarte (si hay duplicados al guardar todo)
-const DISCARD_VALUE = { common: 100, rare: 300, icon: 700, elite: 1000 };
+const DISCARD_VALUE = { common: 100, rare: 300, icon: 700, elite: 1000, totw: 800 };
 
 // Etiquetas legibles por rareza para UI del reveal
-const RARITY_LABEL = { common: 'ORO', rare: 'HÉROE', icon: 'ICONO', elite: 'ESPECIAL', dcp: 'DCP' };
-const RARITY_ORDER = ['common','rare','icon','elite','dcp'];
+const RARITY_LABEL = { common: 'ORO', rare: 'HÉROE', icon: 'ICONO', elite: 'ESPECIAL', totw: 'TOTW', dcp: 'DCP' };
+const RARITY_ORDER = ['common','rare','icon','elite','totw','dcp'];
 
 // Versión de migración de datos del club
 const MIGRATION_VERSION = 2;
@@ -185,6 +195,26 @@ const OVERRIDE_RATINGS = {
     "tarjetas fifa/mbeumo oro 84 rw.png",
     "tarjetas fifa/messi Flashback 93 rw.png",
     "tarjetas fifa/messi totw 89 cam.png",
+    // TOTW adicionales
+    "tarjetas fifa/neymar totw 89 cam.png",
+    "tarjetas fifa/mbappe totw 94 lw.PNG",
+    "tarjetas fifa/haaland totw 92 st.JPG",
+    "tarjetas fifa/hakimi totw 91 rb.PNG",
+    "tarjetas fifa/ronaldo totw 89 st.JPG",
+    "tarjetas fifa/rejinders totw 89 cdm.PNG",
+    "tarjetas fifa/doue totw 93 rw.PNG",
+    // Oro que faltaban (desde la carpeta)
+    "tarjetas fifa/antony oro 81 rm.JPG",
+    "tarjetas fifa/cherki oro 81 cam.png",
+    "tarjetas fifa/cubarsi oro 82 cb.JPG",
+    "tarjetas fifa/doue oro 84 lm.JPG",
+    "tarjetas fifa/estevao oro 79 rw.PNG",
+    "tarjetas fifa/mainoo oro 81 cdm.JPG",
+    "tarjetas fifa/messi oro 84 cam.JPG",
+    "tarjetas fifa/modric oro 83 mc.JPG",
+    "tarjetas fifa/ronaldo oro 85 st.JPG",
+    "tarjetas fifa/trent oro 87 rb.PNG",
+    "tarjetas fifa/van dijk oro 90 cb.JPG",
     "tarjetas fifa/modric  Flashback 92 cm.png",
     "tarjetas fifa/morgan icono 87 st.png",
     "tarjetas fifa/musiala Flashback 90 cam.png",
@@ -439,12 +469,13 @@ function handleChoice(side){
 
 function inferFromFilename(path) {
   const file = path.split("/").pop();
-  const base = file.replace(/\.png$/i, "");
+  const base = file.replace(/\.(png|jpg|jpeg)$/i, "");
   // Flags de rareza por palabras clave
   const isFlash = /flashback/i.test(base);
   const isHeroes = /heroes/i.test(base);
   const isBase = /base/i.test(base);
   const isIcon = /icono|icon/i.test(base) || ICON_FILES.has(file.toLowerCase());
+  const isTotw = /totw/i.test(base);
 
   // Extraer OVR si viene incluido: patrones "OVR 91", "91", "_91"
   let extractedRating = null;
@@ -473,7 +504,7 @@ function inferFromFilename(path) {
 
   // Limpiar el nombre: quitar rarezas, OVR y posición
   const clean = base
-    .replace(/\b(flashback|heroes|base|icono|icon)\b/gi, "")
+    .replace(/\b(flashback|heroes|base|icono|icon|totw)\b/gi, "")
     .replace(/\bovr\s*\d{2}\b/gi, "")
     .replace(/\b(\d{2})\b/g, "")
     // IMPORTANTE: usar \\b porque "\b" en string JS es backspace
@@ -482,7 +513,7 @@ function inferFromFilename(path) {
     .trim();
   const name = titleCase(clean);
 
-  const rarity = isFlash ? "elite" : isIcon ? "icon" : isHeroes ? "rare" : isBase ? "common" : "common";
+  const rarity = isTotw ? "totw" : isFlash ? "elite" : isIcon ? "icon" : isHeroes ? "rare" : isBase ? "common" : "common";
   // Rating: preferir el extraído; sino, un básico por rareza
   let rating = extractedRating || (rarity === "elite" ? 90 : rarity === "icon" ? 88 : rarity === "rare" ? 86 : 83);
   // Aplicar override manual si existe
@@ -559,7 +590,7 @@ function pullCard(packKey) {
   let rating = base.rating;
   if (!rating || rating < 60 || rating > 99) {
     try {
-      const fname = (base.image || '').replace(/\.png$/i,'');
+      const fname = (base.image || '').replace(/\.(png|jpg|jpeg)$/i,'');
       const mm = fname.match(/ovr\s*(\d{2})/i);
       if (mm) rating = parseInt(mm[1],10);
       if (!mm) {
@@ -684,7 +715,10 @@ function dedupeClub(){
 function saveState() {
   // Permitir persistencia aunque no se haya iniciado sesión: usar "Invitado"
   const username = state.user || 'Invitado';
+  // Conservar passwordHash previo si existiera
+  const prev = loadUser(username) || {};
   const data = { coins: state.coins, club: state.club, overrides: state.overrides };
+  if (prev && prev.passwordHash) data.passwordHash = prev.passwordHash;
   try {
     localStorage.setItem(userKey(username), JSON.stringify(data));
     // Si no había usuario activo, establecer el actual para futuras cargas
@@ -737,11 +771,12 @@ function setUser(username) {
 function loadState() {
   const current = localStorage.getItem(STORAGE_KEYS.currentUser);
   if (!current) {
-    // Crear/usar cuenta local por defecto para persistencia sin login
-    setUser('Invitado');
+    // No hay sesión activa: mostrar overlay de autenticación
+    try { showAuth(true); setTimeout(()=> document.getElementById('username')?.focus(), 0); } catch {}
     return;
   }
   setUser(current);
+  try { showAuth(false); } catch {}
 }
 
 // UI Updates
@@ -1826,18 +1861,62 @@ function init(){
 
   // Auth form
   const authForm = document.getElementById('authForm');
-  if (authForm) authForm.addEventListener('submit', (e)=>{
+  if (authForm) authForm.addEventListener('submit', async (e)=>{
     e.preventDefault();
-    const inp = document.getElementById('username');
-    const uname = inp && inp.value ? inp.value.trim() : '';
-    if (!uname){ toast('Escribe un usuario'); return; }
-    setUser(uname);
-    showAuth(false);
+    const uEl = document.getElementById('username');
+    const pEl = document.getElementById('password');
+    const errEl = document.getElementById('authError');
+    if (errEl) errEl.textContent = '';
+    const uname = uEl && uEl.value ? uEl.value.trim() : '';
+    const pwd = pEl && pEl.value ? pEl.value : '';
+    if (!uname){ if (errEl) errEl.textContent = 'Escribe un nombre de usuario'; return; }
+
+    try {
+      const existing = loadUser(uname);
+      if (existing) {
+        // Usuario existente: verificar contraseña si tiene hash guardado
+        if (existing.passwordHash) {
+          if (!pwd) { if (errEl) errEl.textContent = 'Esta cuenta requiere contraseña'; return; }
+          const hp = await hashPassword(pwd);
+          if (hp !== existing.passwordHash) { if (errEl) errEl.textContent = 'Contraseña incorrecta'; return; }
+          // ok
+          localStorage.setItem(STORAGE_KEYS.currentUser, uname);
+          setUser(uname);
+          showAuth(false);
+          return;
+        } else {
+          // No tenía contraseña. Si el usuario escribe una ahora, establecerla.
+          if (pwd) {
+            const hp = await hashPassword(pwd);
+            const updated = { ...existing, passwordHash: hp };
+            localStorage.setItem(userKey(uname), JSON.stringify(updated));
+          }
+          localStorage.setItem(STORAGE_KEYS.currentUser, uname);
+          setUser(uname);
+          showAuth(false);
+          return;
+        }
+      } else {
+        // Crear nueva cuenta con 20,000 monedas
+        const data = { coins: 20000, club: [], overrides: {} };
+        if (pwd) {
+          data.passwordHash = await hashPassword(pwd);
+        }
+        localStorage.setItem(userKey(uname), JSON.stringify(data));
+        localStorage.setItem(STORAGE_KEYS.currentUser, uname);
+        setUser(uname);
+        showAuth(false);
+        return;
+      }
+    } catch (err) {
+      console.error('Auth error:', err);
+      if (errEl) errEl.textContent = 'Ocurrió un error. Intenta de nuevo.';
+    }
   });
 
   // Atajos torneo: clicks en opciones
   $$('#choices .choice').forEach(btn=>{
-    btn.addEventListener('click', ()=> handleChoice(btn.getAttribute('data-side')));
+    btn.addEventListener('click', ()=> onChoice(btn.getAttribute('data-side')));
   });
 }
 

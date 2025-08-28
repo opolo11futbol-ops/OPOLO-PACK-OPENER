@@ -13,6 +13,8 @@
   --icon:#ffd166;    /* Icono amarillo */
   --rare:#7b2cbf;    /* Héroe morado */
   --common:#f5c542;  /* Oro amarillo */
+  --totw:#111827;    /* TOTW: negro/gris oscuro */
+  --totw-accent:#ffb703; /* TOTW acento dorado */
   --danger:#ff6b6b;
 }
 *{box-sizing:border-box}
@@ -25,7 +27,8 @@ body{
 /* Topbar */
 .topbar{display:flex; align-items:center; justify-content:space-between; padding:14px 18px; backdrop-filter:blur(6px);
   background:linear-gradient(180deg, rgba(20,30,70,.8), rgba(10,15,35,.5)); border-bottom:1px solid #1f2750; position:sticky; top:0; z-index:10}
-.brand{font-weight:900; letter-spacing:.5px}
+.brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.5px}
+.brand .logo{height:28px; width:auto; display:block}
 .status{display:flex; gap:10px; align-items:center}
 .coins{background:#0c1330; padding:8px 12px; border-radius:10px; border:1px solid #20295a}
 
@@ -49,6 +52,7 @@ body{
 .pack .silver{color:var(--silver)}
 .pack .gold{color:var(--gold)}
 .pack .promo{color:var(--primary)}
+.pack .totw{color:var(--totw-accent)}
 
 .actions{display:flex; gap:10px; margin:16px 4px}
 
@@ -82,6 +86,9 @@ body{
 .card.elite .rating{color:var(--elite)}
 .card.icon{border-color:rgba(255,255,255,.75); box-shadow:0 0 20px rgba(255,209,102,.20) inset} /* Icono: blanco con amarillo */
 .card.icon .rating{color:var(--icon)}
+/* TOTW: negro con acentos dorados */
+.card.totw{border-color:rgba(255,183,3,.65); box-shadow:0 0 24px rgba(255,183,3,.18) inset}
+.card.totw .rating{color:var(--totw-accent)}
 
 /* Reveal: estilo tipo ficha vertical como en el ejemplo */
 .reveal .shimmer{display:none}
@@ -94,6 +101,7 @@ body{
 .card.rare .card-front .nation{color:#7b2cbf}
 .card.icon .card-front .nation{color:#c28f00}
 .card.elite .card-front .nation{color:#9d4edd}
+.card.totw .card-front .nation{color:#b8860b}
 .reveal .card-front .position{display:block; text-align:center; color:var(--muted); font-size:.9rem}
 
 /* Club */
@@ -191,6 +199,8 @@ header, .packs, .reveal, .tournament, .auth-card, .club, .club-card, .club-heade
 .tag.icon{background:#fff0f0; color:#8a0018}
 .tag.elite{background:#f3e9ff; color:#4b1f9a}
 .tag.dcp{background:#e7fff2; color:#0a6b3c; font-weight:800}
+/* TOTW tags */
+.tag.totw{background:#fff3da; color:#8a5a00; font-weight:800}
 
 /* Duplicate count badge on club cards */
 .dup-badge{position:absolute; top:6px; left:6px; background:#0f172a; color:#ffffff; border:1px solid #223057; border-radius:999px; padding:2px 8px; font-weight:700; font-size:.8rem; z-index:5; box-shadow:0 2px 6px rgba(0,0,0,.25)}
@@ -214,6 +224,7 @@ header, .packs, .reveal, .tournament, .auth-card, .club, .club-card, .club-heade
 .lineup-list .tag.rare{background:#efe4ff; color:#5b2aa6}
 .lineup-list .tag.icon{background:#fff3c9; color:#7a5a00}
 .lineup-list .tag.elite{background:#efe0ff; color:#4a148c}
+.lineup-list .tag.totw{background:#fff0da; color:#8a5a00}
 .lineup-footer{display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-top:1px solid #e6ecf7}
 
 /* DCP overlay */
