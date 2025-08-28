@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FIFA Packs - Mini Juego</title>
+  <title>opolo pack opener</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="brand">FIFA Packs</div>
+    <div class="brand"><img src="assets/logo.png" alt="Logo" class="logo" /><span>opolo pack opener</span></div>
     <div class="status">
       <div class="user" id="currentUser">Invitado</div>
       <div class="coins" id="coins">🪙 0</div>
@@ -29,7 +29,7 @@
           <div class="pack-title bronze">Bronce</div>
           <div class="pack-info">
             <div>Precio: 500</div>
-            <div>Rates: 70% Oro · 20% Héroe · 7% Icono · 3% Flashback</div>
+            <div>Rates: 68% Oro · 20% Héroe · 7% Icono · 3% Flashback · 2% TOTW</div>
             <div>5 cartas</div>
           </div>
         </button>
@@ -37,7 +37,7 @@
           <div class="pack-title silver">Plata</div>
           <div class="pack-info">
             <div>Precio: 2500</div>
-            <div>Rates: 45% Oro · 30% Héroe · 15% Icono · 10% Flashback</div>
+            <div>Rates: 43% Oro · 30% Héroe · 15% Icono · 10% Flashback · 2% TOTW</div>
             <div>5 cartas</div>
           </div>
         </button>
@@ -45,7 +45,7 @@
           <div class="pack-title gold">Oro</div>
           <div class="pack-info">
             <div>Precio: 7500</div>
-            <div>Rates: 25% Oro · 40% Héroe · 20% Icono · 15% Flashback</div>
+            <div>Rates: 23% Oro · 38% Héroe · 20% Icono · 15% Flashback · 4% TOTW</div>
             <div>5 cartas</div>
           </div>
         </button>
@@ -53,7 +53,7 @@
           <div class="pack-title promo">Promo</div>
           <div class="pack-info">
             <div>Precio: 15000</div>
-            <div>Rates: 10% Oro · 30% Héroe · 35% Icono · 25% Flashback</div>
+            <div>Rates: 8% Oro · 28% Héroe · 35% Icono · 25% Flashback · 4% TOTW</div>
             <div>5 cartas</div>
           </div>
         </button>
@@ -62,7 +62,7 @@
           <div class="pack-info">
             <div>Precio: 30000</div>
             <div>Garantiza: 2 Flashback</div>
-            <div>Rates: 10% Oro · 25% Héroe · 20% Icono · 45% Flashback</div>
+            <div>Rates: 8% Oro · 25% Héroe · 20% Icono · 45% Flashback · 2% TOTW</div>
             <div>5 cartas</div>
           </div>
         </button>
@@ -71,7 +71,16 @@
           <div class="pack-info">
             <div>Precio: 32000</div>
             <div>Garantiza: 2 Icono</div>
-            <div>Rates: 15% Oro · 30% Héroe · 35% Icono · 20% Flashback</div>
+            <div>Rates: 13% Oro · 30% Héroe · 35% Icono · 20% Flashback · 2% TOTW</div>
+            <div>5 cartas</div>
+          </div>
+        </button>
+        <button class="pack" data-pack="totw_duo">
+          <div class="pack-title totw">TOTW x2</div>
+          <div class="pack-info">
+            <div>Precio: 31000</div>
+            <div>Garantiza: 2 TOTW</div>
+            <div>Rates: 12% Oro · 26% Héroe · 25% Icono · 2% Flashback · 35% TOTW</div>
             <div>5 cartas</div>
           </div>
         </button>
@@ -163,6 +172,7 @@
             <option value="rare">Héroe</option>
             <option value="icon">Icono</option>
             <option value="elite">Flashback</option>
+            <option value="totw">TOTW</option>
           </select>
           <button id="closeClubBtn" class="btn small">Cerrar</button>
         </div>
@@ -276,7 +286,7 @@
   </section>
 
   <footer class="footer">
-    Hecho por ti · Sin APIs · Solo HTML/CSS/JS
+    Hecho por Alejandro Hernandez Medina · Sin APIs · Solo HTML/CSS/JS
   </footer>
 
   <!-- Auth Overlay -->
@@ -286,6 +296,8 @@
       <p class="muted">Crea o entra a una cuenta local (solo en este navegador)</p>
       <form id="authForm">
         <input id="username" name="username" type="text" placeholder="Nombre de usuario" autocomplete="username" required />
+        <input id="password" name="password" type="password" placeholder="Contraseña (opcional para cuentas nuevas)" autocomplete="current-password" />
+        <div id="authError" class="small" style="color:#e74c3c; min-height:1.2em"></div>
         <div class="auth-actions">
           <button type="submit" class="btn">Entrar</button>
         </div>
@@ -295,6 +307,6 @@
   </section>
 
   <!-- Cache-bust to forzar que cargue la última versión del JS -->
-  <script src="script.js?v=9"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>
