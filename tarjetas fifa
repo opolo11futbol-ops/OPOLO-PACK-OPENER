@@ -1,1 +1,3 @@
-
+git add "tarjetas fifa"
+git commit -m "Agrego todas las imágenes"
+git push
