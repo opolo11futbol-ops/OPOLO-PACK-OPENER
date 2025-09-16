@@ -4,6 +4,16 @@
 // (Utilidades aleatorias definidas más abajo para evitar duplicados)
 
 const $ = (s) => document.querySelector(s);
+// Normaliza rutas de imagen: permite usar solo el nombre del archivo (sin carpeta)
+function normalizeImagePath(p){
+  if (!p) return p;
+  let s = String(p).replace(/\\/g,'/');
+  // Si no empieza con 'tarjetas fifa/' y no contiene carpeta, anteponer
+  if (!s.toLowerCase().startsWith('tarjetas fifa/')){
+    if (!s.includes('/')) s = `tarjetas fifa/${s}`;
+  }
+  return s;
+}
 const $$ = (s) => document.querySelectorAll(s);
 
 // Estado y persistencia
@@ -534,7 +544,8 @@ function handleChoice(side){
 }
 
 function inferFromFilename(path) {
-  const file = path.split("/").pop();
+  const normPath = normalizeImagePath(path);
+  const file = normPath.split("/").pop();
   const base = file.replace(/\.(png|jpg|jpeg)$/i, "");
   // Flags de rareza por palabras clave
   const isFlash = /flashback/i.test(base);
@@ -599,12 +610,12 @@ function inferFromFilename(path) {
   // Aplicar override manual si existe
   if (OVERRIDE_RATINGS[name]) rating = OVERRIDE_RATINGS[name];
   // Override por imagen guardado por el usuario
-  const userOv = state && state.overrides ? state.overrides[path] : null;
+  const userOv = state && state.overrides ? state.overrides[normPath] : null;
   if (userOv && userOv >= 60 && userOv <= 99) rating = userOv;
   // Posición: usar extraída si existe
   const position = extractedPos || "";
 
-  return { name, rating, nation: "", position, rarity, image: path };
+  return { name, rating, nation: "", position, rarity, image: normPath };
 }
 
 const PLAYERS = IMAGE_FILES.map(inferFromFilename);
