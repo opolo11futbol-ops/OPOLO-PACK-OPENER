@@ -196,7 +196,7 @@ const OVERRIDE_RATINGS = {
   // los archivos detectados en la carpeta ahora mismo. Si agregas más, dime y lo actualizo.
   const IMAGE_FILES = [
     // Base y especiales (excluye DCP)
-    "tarjetas fifa/Diaz base 86 lw.png",
+    "/Diaz base 86 lw.png",
     "tarjetas fifa/Lamine Yamal  Flashback 91 rw.png",
     "tarjetas fifa/Lamine Yamal base 86 rw.png",
     "tarjetas fifa/Musiala base 88 cam.png",
