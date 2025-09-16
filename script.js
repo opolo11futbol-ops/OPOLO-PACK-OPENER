@@ -80,35 +80,35 @@ const DCP_CONFIG = {
     title: 'DCP · Cristiano Ronaldo 97',
     count: 11,
     minAvg: 89,
-    reward: { name: 'Cristiano Ronaldo', rating: 97, rarity: 'dcp', position: 'Centre Forward', image: 'Cristiano Ronaldo dcp.png' },
+    reward: { name: 'Cristiano Ronaldo', rating: 97, rarity: 'dcp', position: 'Centre Forward', image: 'tarjetas fifa/Cristiano Ronaldo dcp.png' },
     reqText: 'Requisito: 11 jugadores con media mínima 89 OVR. Al enviar la plantilla, recibirás a <strong>Cristiano Ronaldo 97</strong> y las cartas enviadas se perderán.'
   },
   MESSI: {
     title: 'DCP · Lionel Messi 97',
     count: 6,
     minAvg: 92,
-    reward: { name: 'Lionel Messi', rating: 97, rarity: 'dcp', position: 'Right Winger', image: 'messi dcp.png' },
+    reward: { name: 'Lionel Messi', rating: 97, rarity: 'dcp', position: 'Right Winger', image: 'tarjetas fifa/messi dcp.png' },
     reqText: 'Requisito: 6 jugadores con media mínima 92 OVR. Al enviar la plantilla, recibirás a <strong>Lionel Messi 97</strong> y las cartas enviadas se perderán.'
   },
   DIAZ: {
     title: 'DCP · Díaz 98',
     count: 9,
     minAvg: 91,
-    reward: { name: 'Díaz', rating: 98, rarity: 'dcp', position: 'Left Winger', image: 'diaz dcp 98 lw.PNG' },
+    reward: { name: 'Díaz', rating: 98, rarity: 'dcp', position: 'Left Winger', image: 'tarjetas fifa/diaz dcp 98 lw.PNG' },
     reqText: 'Requisito: 9 jugadores con media mínima 91 OVR. Al enviar la plantilla, recibirás a <strong>Díaz 98</strong> y las cartas enviadas se perderán.'
   },
   RAPHINHA: {
     title: 'DCP · Raphinha 98',
     count: 6,
     minAvg: 93,
-    reward: { name: 'Raphinha', rating: 98, rarity: 'dcp', position: 'Right Winger', image: 'raphiña dcp 98 lw.png' },
+    reward: { name: 'Raphinha', rating: 98, rarity: 'dcp', position: 'Right Winger', image: 'tarjetas fifa/raphiña dcp 98 lw.png' },
     reqText: 'Requisito: 6 jugadores con media mínima 93 OVR. Al enviar la plantilla, recibirás a <strong>Raphinha 98</strong> y las cartas enviadas se perderán.'
   },
   MBAPPE: {
     title: 'DCP · Mbappé 96',
     count: 11,
     minAvg: 88,
-    reward: { name: 'Mbappé', rating: 96, rarity: 'dcp', position: 'Striker', image: 'mbappe dcp 96 st.png' },
+    reward: { name: 'Mbappé', rating: 96, rarity: 'dcp', position: 'Striker', image: 'tarjetas fifa/mbappe dcp 96 st.png' },
     reqText: 'Requisito: 11 jugadores con media mínima 88 OVR. Al enviar la plantilla, recibirás a <strong>Mbappé 96</strong> y las cartas enviadas se perderán.'
   }
 };
@@ -123,21 +123,54 @@ const STAGE_REWARDS = {
 
 // Packs
 const PACKS = {
-  bronze: { name: "Bronce", price: 500, odds: { common: 0.70, rare: 0.18, icon: 0.07, elite: 0.03, totw: 0.02 }, size: 5 },
-  silver: { name: "Plata", price: 2500, odds: { common: 0.43, rare: 0.30, icon: 0.15, elite: 0.10, totw: 0.02 }, size: 5 },
-  gold:   { name: "Oro", price: 7500, odds: { common: 0.35, rare: 0.33, icon: 0.16, elite: 0.12, totw: 0.04 }, size: 5 },
+  bronze: { name: "Bronce", price: 500, odds: { common: 0.66, rare: 0.17, world_tour_silver: 0.04, world_tour: 0.01, rttk: 0.01, miracle: 0.01, icon: 0.06, elite: 0.03, totw: 0.02 }, size: 5 },
+  silver: { name: "Plata", price: 2500, odds: { common: 0.41, rare: 0.27, world_tour_silver: 0.05, world_tour: 0.02, rttk: 0.01, miracle: 0.01, icon: 0.12, elite: 0.09, totw: 0.02 }, size: 5 },
+  gold:   { name: "Oro", price: 7500, odds: { common: 0.31, rare: 0.30, world_tour_silver: 0.01, world_tour: 0.04, rttk: 0.03, miracle: 0.03, icon: 0.14, elite: 0.10, totw: 0.04 }, size: 5 },
   promo:  { name: "Promo", price: 15000, odds: { common: 0.08, rare: 0.28, icon: 0.35, elite: 0.25, totw: 0.04 }, size: 5 },
   flash_duo: { name: "Flashback x2", price: 30000, odds: { common: 0.08, rare: 0.25, icon: 0.20, elite: 0.45, totw: 0.02 }, size: 5, guarantees: { elite: 2 } },
   icon_duo:  { name: "Icono x2",     price: 32000, odds: { common: 0.13, rare: 0.30, icon: 0.35, elite: 0.20, totw: 0.02 }, size: 5, guarantees: { icon: 2 } },
   totw_duo:  { name: "TOTW x2",      price: 31000, odds: { common: 0.12, rare: 0.26, icon: 0.25, elite: 0.02, totw: 0.35 }, size: 5, guarantees: { totw: 2 } },
+  events: { name: "Eventos", price: 18000, odds: { common: 0.10, rare: 0.15, world_tour_silver: 0.10, world_tour: 0.25, rttk: 0.15, miracle: 0.15, icon: 0.05, elite: 0.03, totw: 0.02 }, size: 5, guarantees: { world_tour: 1, rttk: 1, miracle: 1, world_tour_silver: 1 } },
 };
 
 // Recompensa por descarte (si hay duplicados al guardar todo)
-const DISCARD_VALUE = { common: 100, rare: 300, icon: 700, elite: 1000, totw: 800 };
+const DISCARD_VALUE = { 
+  common: 100, 
+  rare: 300, 
+  world_tour_silver: 120,
+  world_tour: 350,
+  rttk: 500,
+  miracle: 650,
+  icon: 700, 
+  elite: 1000, 
+  totw: 800 
+};
 
 // Etiquetas legibles por rareza para UI del reveal
-const RARITY_LABEL = { common: 'ORO', rare: 'HÉROE', icon: 'ICONO', elite: 'ESPECIAL', totw: 'TOTW', dcp: 'DCP' };
-const RARITY_ORDER = ['common','rare','icon','elite','totw','dcp'];
+const RARITY_LABEL = { 
+  common: 'ORO', 
+  rare: 'HÉROE', 
+  world_tour_silver: 'SILVER WORLD TOUR',
+  world_tour: 'WORLD TOUR',
+  rttk: 'RTTK',
+  miracle: 'MIRACLE',
+  icon: 'ICONO', 
+  elite: 'ESPECIAL', 
+  totw: 'TOTW', 
+  dcp: 'DCP' 
+};
+const RARITY_ORDER = [
+  'common',          // Oro
+  'rare',            // Héroe
+  'world_tour_silver', // Silver World Tour
+  'world_tour',      // World Tour
+  'rttk',            // RTTK
+  'miracle',         // Miracle Moments
+  'icon',            // Icono
+  'elite',           // Flashback
+  'totw',            // TOTW
+  'dcp'              // DCP (reto)
+];
 
 // Versión de migración de datos del club
 const MIGRATION_VERSION = 2;
@@ -153,95 +186,128 @@ const OVERRIDE_RATINGS = {
   // los archivos detectados en la carpeta ahora mismo. Si agregas más, dime y lo actualizo.
   const IMAGE_FILES = [
     // Base y especiales (excluye DCP)
-    "Diaz base 86 lw.png",
-    "Lamine Yamal  Flashback 91 rw.png",
-    "Lamine Yamal base 86 rw.png",
-    "Musiala base 88 cam.png",
-    "Rashford base 82 lm.png",
-    "aimar heroes 85 cam.png",
-    "ait-nouri oro 83 lb.png",
-    "ansu fati showdown 91 lw.png",
-    "ansu fati showdown+ 93 lw.png",
-    "baah bronze 64 rw.png",
-    "bellinham oro 90 cm.png",
-    "bobb plata 74 rw.png",
-    "bum-kun-cha icono 87 st.png",
-    "caicedo showdown 84 cdm.png",
-    "caicedo showdown+ 86 cdm.png",
-    "cheilini icono 90 cb.png",
-    "cherki oro 81 cam.png",
-    "corona  Flashback 86 rm.png",
-    "cunha oro 84 st.png",
-    "de rossi heroes 85 cdm.png",
-    "delap oro 80 st.png",
-    "diaz Flashback 92 lw.png",
-    "ekitike oro 83 st.png",
-    "elanga oro 82 rm.png",
-    "frimpong oro 85 rm.png",
-    "gignac  Flashback 87 st.png",
-    "gittens oro 80 lm.png",
-    "gyokeres oro 88 st.png",
-    "iniesta icono 91 cm.png",
-    "joao pedro oro 81 st.png",
-    "kahn icono 93 gk.png",
-    "kerkez oro 82 lb.png",
-    "kroos icono 91 cm.png",
-    "kudus oro 83 rm.png",
-    "laudehr heroes 88 cam.png",
-    "lewandoski  Flashback 88 st.png",
-    "madueke oro 81 rm.png",
-    "marcelo icono 91 lb.png",
-    "mbappe  Flashback 88 st.png",
-    "mbeumo oro 84 rw.png",
-    "messi Flashback 93 rw.png",
-    "messi totw 89 cam.png",
+    "tarjetas fifa/Diaz base 86 lw.png",
+    "tarjetas fifa/Lamine Yamal  Flashback 91 rw.png",
+    "tarjetas fifa/Lamine Yamal base 86 rw.png",
+    "tarjetas fifa/Musiala base 88 cam.png",
+    "tarjetas fifa/Rashford base 82 lm.png",
+    "tarjetas fifa/aimar heroes 85 cam.png",
+    "tarjetas fifa/ait-nouri oro 83 lb.png",
+    "tarjetas fifa/ansu fati showdown 91 lw.png",
+    "tarjetas fifa/ansu fati showdown+ 93 lw.png",
+    "tarjetas fifa/baah bronze 64 rw.png",
+    "tarjetas fifa/bellinham oro 90 cm.png",
+    "tarjetas fifa/bobb plata 74 rw.png",
+    "tarjetas fifa/bum-kun-cha icono 87 st.png",
+    "tarjetas fifa/caicedo showdown 84 cdm.png",
+    "tarjetas fifa/caicedo showdown+ 86 cdm.png",
+    "tarjetas fifa/cheilini icono 90 cb.png",
+    "tarjetas fifa/cherki oro 81 cam.png",
+    "tarjetas fifa/corona  Flashback 86 rm.png",
+    "tarjetas fifa/cunha oro 84 st.png",
+    "tarjetas fifa/de rossi heroes 85 cdm.png",
+    "tarjetas fifa/delap oro 80 st.png",
+    "tarjetas fifa/diaz Flashback 92 lw.png",
+    "tarjetas fifa/ekitike oro 83 st.png",
+    "tarjetas fifa/elanga oro 82 rm.png",
+    "tarjetas fifa/frimpong oro 85 rm.png",
+    "tarjetas fifa/gignac  Flashback 87 st.png",
+    "tarjetas fifa/gittens oro 80 lm.png",
+    "tarjetas fifa/gyokeres oro 88 st.png",
+    "tarjetas fifa/iniesta icono 91 cm.png",
+    "tarjetas fifa/joao pedro oro 81 st.png",
+    "tarjetas fifa/kahn icono 93 gk.png",
+    "tarjetas fifa/kerkez oro 82 lb.png",
+    "tarjetas fifa/kroos icono 91 cm.png",
+    "tarjetas fifa/kudus oro 83 rm.png",
+    "tarjetas fifa/laudehr heroes 88 cam.png",
+    "tarjetas fifa/lewandoski  Flashback 88 st.png",
+    "tarjetas fifa/madueke oro 81 rm.png",
+    "tarjetas fifa/marcelo icono 91 lb.png",
+    "tarjetas fifa/mbappe  Flashback 88 st.png",
+    "tarjetas fifa/mbeumo oro 84 rw.png",
+    "tarjetas fifa/messi Flashback 93 rw.png",
+    "tarjetas fifa/messi totw 89 cam.png",
     // TOTW adicionales
-    "neymar totw 89 cam.png",
-    "mbappe totw 94 lw.PNG",
-    "haaland totw 92 st.JPG",
-    "hakimi totw 91 rb.PNG",
-    "ronaldo totw 89 st.JPG",
-    "rejinders totw 89 cdm.PNG",
-    "doue totw 93 rw.PNG",
+    "tarjetas fifa/neymar totw 89 cam.png",
+    "tarjetas fifa/mbappe totw 94 lw.PNG",
+    "tarjetas fifa/haaland totw 92 st.JPG",
+    "tarjetas fifa/hakimi totw 91 rb.PNG",
+    "tarjetas fifa/ronaldo totw 89 st.JPG",
+    "tarjetas fifa/rejinders totw 89 cdm.PNG",
+    "tarjetas fifa/doue totw 93 rw.PNG",
     // Oro que faltaban (desde la carpeta)
-    "antony oro 81 rm.JPG",
-    "cherki oro 81 cam.png",
-    "cubarsi oro 82 cb.JPG",
-    "doue oro 84 lm.JPG",
-    "estevao oro 79 rw.PNG",
-    "mainoo oro 81 cdm.JPG",
-    "messi oro 84 cam.JPG",
-    "modric oro 83 mc.JPG",
-    "ronaldo oro 85 st.JPG",
-    "trent oro 87 rb.PNG",
-    "van dijk oro 90 cb.JPG",
-    "modric  Flashback 92 cm.png",
-    "morgan icono 87 st.png",
-    "musiala Flashback 90 cam.png",
-    "necib heroes 88 cam.png",
-    "neymar totw 89 cam.png",
-    "pogba  Flashback 92 cm.png",
-    "pogba oro 78 mc.png",
-    "quaresma heroes 85 rm.png",
-    "rejinders oro 85 cm.png",
-    "rejinders showdown 88 cm.png",
-    "rodriges  Flashback 86 cam.png",
-    "ronaldo  Flashback 93 st.png",
-    "saint-maximin  Flashback 93 lw.png",
-    "salgado heroes 87 rb.png",
-    "scott heroes 85 cdm.png",
-    "sisi icono 86 cam.png",
-    "son  Flashback 89 st.png",
-    "sögger icono 86 cdm.png",
-    "thiago silva  Flashback 89 cb.png",
-    "totti icono 90 cam.png",
-    "trafford oro 81 gk.png",
-    "trent showdow+ 90 rb.png",
-    "ugarte showdown+ 85 cdm.png",
-    "wirts oro 89 cam.png",
-    "zamorano heroes 87 st.png",
-    "zlatan icono 92 st.png",
-    "zubamendi oro 83 cdm.png",
+    "tarjetas fifa/antony oro 81 rm.JPG",
+    "tarjetas fifa/cherki oro 81 cam.png",
+    "tarjetas fifa/cubarsi oro 82 cb.JPG",
+    "tarjetas fifa/doue oro 84 lm.JPG",
+    "tarjetas fifa/estevao oro 79 rw.PNG",
+    "tarjetas fifa/mainoo oro 81 cdm.JPG",
+    "tarjetas fifa/messi oro 84 cam.JPG",
+    "tarjetas fifa/modric oro 83 mc.JPG",
+    "tarjetas fifa/ronaldo oro 85 st.JPG",
+    "tarjetas fifa/trent oro 87 rb.PNG",
+    "tarjetas fifa/van dijk oro 90 cb.JPG",
+    "tarjetas fifa/modric  Flashback 92 cm.png",
+    "tarjetas fifa/morgan icono 87 st.png",
+    "tarjetas fifa/musiala Flashback 90 cam.png",
+    "tarjetas fifa/necib heroes 88 cam.png",
+    "tarjetas fifa/neymar totw 89 cam.png",
+    "tarjetas fifa/pogba  Flashback 92 cm.png",
+    "tarjetas fifa/pogba oro 78 mc.png",
+    "tarjetas fifa/quaresma heroes 85 rm.png",
+    "tarjetas fifa/rejinders oro 85 cm.png",
+    "tarjetas fifa/rejinders showdown 88 cm.png",
+    // Nuevas cartas detectadas en carpeta (.webp, World Tour, Miracle Moments, RTTK)
+    "tarjetas fifa/alisson oro 89 por.webp",
+    "tarjetas fifa/donnarumma oro 89 por.webp",
+    "tarjetas fifa/dembele oro 90 dc.webp",
+    "tarjetas fifa/bonmati oro 91 mc.webp",
+    // RTTK y similares
+    "tarjetas fifa/aina RTTK 87 lb.JPG",
+    // World Tour (plata/oro)
+    "tarjetas fifa/anselmino silver world tour 74 cb.JPG",
+    "tarjetas fifa/bade world tour 84 cb.JPG",
+    "tarjetas fifa/barry world tour 83 st.JPG",
+    "tarjetas fifa/charlton silver world  tour 74 cam.PNG",
+    "tarjetas fifa/cozza silver world tour 74 lb.JPG",
+    "tarjetas fifa/diaz world tour 87 lw.JPG",
+    "tarjetas fifa/eusebio silver world  tour 73 st.PNG",
+    "tarjetas fifa/garincha silver world  tour 70 rw.PNG",
+    "tarjetas fifa/gullit silver world tour 74 cam.JPG",
+    "tarjetas fifa/hassan silver world tour 74 rm.JPG",
+    "tarjetas fifa/henry silver world tour 74 st.JPG",
+    "tarjetas fifa/lamine yamal world tour 90 rm.JPG",
+    "tarjetas fifa/lemar world tour 85 cm.JPG",
+    "tarjetas fifa/maradona silver world tour 74 cam.JPG",
+    "tarjetas fifa/ndombele silver world tour 74 cm.JPG",
+    "tarjetas fifa/rolanldinho silver world tour 74 lw.JPG",
+    "tarjetas fifa/ronaldo silver world tour 74 st.JPG",
+    "tarjetas fifa/yashin silver world  tour 72 gk.PNG",
+    "tarjetas fifa/zlatan silver world tour 74 st.JPG",
+    // Miracle Moments
+    "tarjetas fifa/best miracle moments 91 rw.PNG",
+    "tarjetas fifa/cannavaro miracle moments 90 cb.PNG",
+    "tarjetas fifa/casillas miracle moments 91 gk.PNG",
+    "tarjetas fifa/cole miracle moments 87 lb.PNG",
+    "tarjetas fifa/drogba miracle moments 90 st.PNG",
+    "tarjetas fifa/rodriges  Flashback 86 cam.png",
+    "tarjetas fifa/ronaldo  Flashback 93 st.png",
+    "tarjetas fifa/saint-maximin  Flashback 93 lw.png",
+    "tarjetas fifa/salgado heroes 87 rb.png",
+    "tarjetas fifa/scott heroes 85 cdm.png",
+    "tarjetas fifa/sisi icono 86 cam.png",
+    "tarjetas fifa/son  Flashback 89 st.png",
+    "tarjetas fifa/sögger icono 86 cdm.png",
+    "tarjetas fifa/thiago silva  Flashback 89 cb.png",
+    "tarjetas fifa/totti icono 90 cam.png",
+    "tarjetas fifa/trafford oro 81 gk.png",
+    "tarjetas fifa/trent showdow+ 90 rb.png",
+    "tarjetas fifa/ugarte showdown+ 85 cdm.png",
+    "tarjetas fifa/wirts oro 89 cam.png",
+    "tarjetas fifa/zamorano heroes 87 st.png",
+    "tarjetas fifa/zlatan icono 92 st.png",
+    "tarjetas fifa/zubamendi oro 83 cdm.png",
   ];
 
 // Archivos que consideraremos como "Icono" (ligeramente menos raro que Flashback)
@@ -476,6 +542,10 @@ function inferFromFilename(path) {
   const isBase = /base/i.test(base);
   const isIcon = /icono|icon/i.test(base) || ICON_FILES.has(file.toLowerCase());
   const isTotw = /totw/i.test(base);
+  const isWorldTourSilver = /silver\s*world\s*tour/i.test(base);
+  const isWorldTour = /(^|\s)world\s*tour/i.test(base) && !isWorldTourSilver;
+  const isRTTK = /rttk/i.test(base);
+  const isMiracle = /miracle\s*moments?/i.test(base);
 
   // Extraer OVR si viene incluido: patrones "OVR 91", "91", "_91"
   let extractedRating = null;
@@ -513,7 +583,17 @@ function inferFromFilename(path) {
     .trim();
   const name = titleCase(clean);
 
-  const rarity = isTotw ? "totw" : isFlash ? "elite" : isIcon ? "icon" : isHeroes ? "rare" : isBase ? "common" : "common";
+  // Rareza
+  let rarity =
+    isTotw ? "totw" :
+    isIcon ? "icon" :
+    isFlash ? "elite" :
+    isMiracle ? "miracle" :
+    isRTTK ? "rttk" :
+    isWorldTourSilver ? "world_tour_silver" :
+    isWorldTour ? "world_tour" :
+    isHeroes ? "rare" :
+    isBase ? "common" : "common";
   // Rating: preferir el extraído; sino, un básico por rareza
   let rating = extractedRating || (rarity === "elite" ? 90 : rarity === "icon" ? 88 : rarity === "rare" ? 86 : 83);
   // Aplicar override manual si existe

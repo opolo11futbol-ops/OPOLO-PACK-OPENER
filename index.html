@@ -11,7 +11,7 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="brand"><img src="logo.png" alt="Logo" class="logo" /><span>opolo pack opener</span></div>
+    <div class="brand"><img src="assets/logo.png" alt="Logo" class="logo" /><span>opolo pack opener</span></div>
     <div class="status">
       <div class="user" id="currentUser">Invitado</div>
       <div class="coins" id="coins">🪙 0</div>
@@ -29,7 +29,7 @@
           <div class="pack-title bronze">Bronce</div>
           <div class="pack-info">
             <div>Precio: 500</div>
-            <div>Rates: 68% Oro · 20% Héroe · 7% Icono · 3% Flashback · 2% TOTW</div>
+            <div>Rates: 66% Oro · 17% Héroe · 6% Icono · 3% Flashback · 2% TOTW · Incluye Silver WT 4% · WT/RTTK/Miracle 3%</div>
             <div>5 cartas</div>
           </div>
         </button>
@@ -45,7 +45,7 @@
           <div class="pack-title gold">Oro</div>
           <div class="pack-info">
             <div>Precio: 7500</div>
-            <div>Rates: 23% Oro · 38% Héroe · 20% Icono · 15% Flashback · 4% TOTW</div>
+            <div>Rates: 31% Oro · 30% Héroe · 14% Icono · 10% Flashback · 4% TOTW · Incluye WT 4% · RTTK 3% · Miracle 3%</div>
             <div>5 cartas</div>
           </div>
         </button>
@@ -54,6 +54,15 @@
           <div class="pack-info">
             <div>Precio: 15000</div>
             <div>Rates: 8% Oro · 28% Héroe · 35% Icono · 25% Flashback · 4% TOTW</div>
+            <div>5 cartas</div>
+          </div>
+        </button>
+        <button class="pack" data-pack="events">
+          <div class="pack-title promo">Eventos</div>
+          <div class="pack-info">
+            <div>Precio: 18000</div>
+            <div>Garantiza: 1 World Tour, 1 RTTK, 1 Miracle, 1 Silver WT</div>
+            <div>Rates aprox: WT 25% · RTTK 15% · Miracle 15% · Silver WT 10% · Oro/Héroe/Icono/etc el resto</div>
             <div>5 cartas</div>
           </div>
         </button>
@@ -170,6 +179,10 @@
             <option value="all">Todos</option>
             <option value="common">Oro</option>
             <option value="rare">Héroe</option>
+            <option value="world_tour_silver">Silver World Tour</option>
+            <option value="world_tour">World Tour</option>
+            <option value="rttk">RTTK</option>
+            <option value="miracle">Miracle Moments</option>
             <option value="icon">Icono</option>
             <option value="elite">Flashback</option>
             <option value="totw">TOTW</option>
@@ -307,6 +320,6 @@
   </section>
 
   <!-- Cache-bust to forzar que cargue la última versión del JS -->
-  <script src="script.js?v=10"></script>
+  <script src="script.js?v=11"></script>
 </body>
 </html>

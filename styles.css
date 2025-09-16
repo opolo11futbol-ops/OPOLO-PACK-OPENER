@@ -89,6 +89,18 @@ body{
 /* TOTW: negro con acentos dorados */
 .card.totw{border-color:rgba(255,183,3,.65); box-shadow:0 0 24px rgba(255,183,3,.18) inset}
 .card.totw .rating{color:var(--totw-accent)}
+/* World Tour (Silver) */
+.card.world_tour_silver{border-color:rgba(192,199,209,.7); box-shadow:0 0 20px rgba(192,199,209,.25) inset}
+.card.world_tour_silver .rating{color:var(--silver)}
+/* World Tour */
+.card.world_tour{border-color:rgba(76,201,240,.6); box-shadow:0 0 22px rgba(76,201,240,.22) inset}
+.card.world_tour .rating{color:#4cc9f0}
+/* RTTK */
+.card.rttk{border-color:rgba(46,204,113,.6); box-shadow:0 0 22px rgba(46,204,113,.22) inset}
+.card.rttk .rating{color:#2ecc71}
+/* Miracle Moments */
+.card.miracle{border-color:rgba(255,159,26,.6); box-shadow:0 0 22px rgba(255,159,26,.22) inset}
+.card.miracle .rating{color:#ff9f1a}
 
 /* Reveal: estilo tipo ficha vertical como en el ejemplo */
 .reveal .shimmer{display:none}
@@ -225,6 +237,11 @@ header, .packs, .reveal, .tournament, .auth-card, .club, .club-card, .club-heade
 .lineup-list .tag.icon{background:#fff3c9; color:#7a5a00}
 .lineup-list .tag.elite{background:#efe0ff; color:#4a148c}
 .lineup-list .tag.totw{background:#fff0da; color:#8a5a00}
+/* New rarity tags */
+.lineup-list .tag.world_tour_silver{background:#f0f2f7; color:#455062}
+.lineup-list .tag.world_tour{background:#e7f8ff; color:#0b6b86}
+.lineup-list .tag.rttk{background:#e9fff2; color:#0a6b3c}
+.lineup-list .tag.miracle{background:#fff4e6; color:#8a4f00}
 .lineup-footer{display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-top:1px solid #e6ecf7}
 
 /* DCP overlay */
